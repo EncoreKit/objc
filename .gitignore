@@ -1,0 +1,30 @@
+## Xcode
+build/
+DerivedData/
+*.xcuserstate
+*.xcuserdatad/
+xcuserdata/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## CocoaPods
+Pods/
+*.xcworkspace
+Podfile.lock
+
+## SPM
+.build/
+.swiftpm/
+Package.resolved
+
+## macOS
+.DS_Store
+
+## Logs
+*.log
+
+## IDEs
+.idea/
+.vscode/

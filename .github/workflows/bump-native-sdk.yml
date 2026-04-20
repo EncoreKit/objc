@@ -1,0 +1,95 @@
+name: Bump EncoreKit pin
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Monday 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Explicit EncoreKit version (leave blank for latest)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bump:
+    name: Bump EncoreKit
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods --no-document
+
+      - name: Resolve target version
+        id: resolve
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          if [[ -n "$INPUT_VERSION" ]]; then
+            VERSION="$INPUT_VERSION"
+          else
+            VERSION=$(pod trunk info EncoreKit | awk '/^[[:space:]]+- [0-9]+\.[0-9]+\.[0-9]+/ {gsub(/[^0-9.]/,""); print; exit}')
+          fi
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Invalid version '$VERSION' (expected X.Y.Z)"
+            exit 1
+          fi
+          CURRENT=$(python3 -c "import json; print(json.load(open('config/sdk-versions.json'))['ios']['EncoreKit'])")
+          echo "current=$CURRENT" >> "$GITHUB_OUTPUT"
+          echo "target=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Current: $CURRENT"
+          echo "Target:  $VERSION"
+
+      - name: Check if bump needed
+        id: check
+        env:
+          CURRENT_VERSION: ${{ steps.resolve.outputs.current }}
+          TARGET_VERSION: ${{ steps.resolve.outputs.target }}
+        run: |
+          if [[ "$CURRENT_VERSION" == "$TARGET_VERSION" ]]; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+            echo "EncoreKit pin already at $TARGET_VERSION — no bump."
+          else
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Update pin files
+        if: steps.check.outputs.needed == 'true'
+        run: bash scripts/release/sync-native-sdk.sh
+
+      - name: Branch + commit + PR
+        if: steps.check.outputs.needed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_VERSION: ${{ steps.resolve.outputs.target }}
+        run: |
+          TARGET="$TARGET_VERSION"
+          if ! [[ "$TARGET" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Invalid TARGET '$TARGET'"
+            exit 1
+          fi
+          BRANCH="chore/bump-encorekit-$TARGET"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name  "github-actions[bot]"
+          git checkout -b "$BRANCH"
+          git add config/sdk-versions.json Package.swift
+          git commit -m "chore: bump EncoreKit pin to $TARGET"
+          git push origin "$BRANCH"
+          gh pr create \
+            --title "chore: bump EncoreKit pin to $TARGET" \
+            --body "Automated bump.
+
+          - \`config/sdk-versions.json\`: EncoreKit → $TARGET
+          - \`Package.swift\`: binary-target exact pin → $TARGET
+
+          ## Verify
+          - [ ] CI green (pod lib lint + xcodebuild test)
+          - [ ] Release a patch version of EncoreObjC after merge" \
+            --base main \
+            --head "$BRANCH"

@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    name: pod lib lint
+    runs-on: macos-15
+    if: ${{ !startsWith(github.event.head_commit.message, 'Release v') }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods --no-document
+
+      - name: pod lib lint
+        run: pod lib lint EncoreObjC.podspec --allow-warnings --verbose
+
+  test:
+    name: xcodebuild test
+    runs-on: macos-15
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods --no-document
+
+      - name: pod install in example
+        working-directory: example
+        run: pod install --repo-update
+
+      - name: Run tests
+        run: |
+          xcodebuild test \
+            -workspace example/EncoreObjCExample.xcworkspace \
+            -scheme EncoreObjCExample \
+            -destination 'platform=iOS Simulator,name=iPhone 15'
