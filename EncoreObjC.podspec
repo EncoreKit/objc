@@ -5,7 +5,7 @@ encorekit_pin = versions["ios"]["EncoreKit"]
 
 Pod::Spec.new do |s|
   s.name             = "EncoreObjC"
-  s.version          = "0.0.0"
+  s.version          = "0.1.0"
   s.summary          = "Objective-C overlay for the Encore iOS SDK."
   s.description      = <<~DESC
     Thin @objc wrapper over EncoreKit. Lets Objective-C apps consume the
