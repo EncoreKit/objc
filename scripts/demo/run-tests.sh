@@ -6,7 +6,7 @@ SDK_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 EXAMPLE_DIR="$SDK_ROOT/example"
 WORKSPACE="$EXAMPLE_DIR/EncoreObjCExample.xcworkspace"
 SCHEME="${SCHEME:-EncoreObjCExample}"
-DESTINATION="${DESTINATION:-platform=iOS Simulator,name=iPhone 15}"
+DESTINATION="${DESTINATION:-platform=iOS Simulator,OS=latest,name=iPhone 17}"
 
 bash "$SCRIPT_DIR/setup-example.sh"
 

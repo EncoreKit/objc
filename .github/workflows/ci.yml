@@ -38,4 +38,4 @@ jobs:
           xcodebuild test \
             -workspace example/EncoreObjCExample.xcworkspace \
             -scheme EncoreObjCExample \
-            -destination 'platform=iOS Simulator,name=iPhone 15'
+            -destination 'platform=iOS Simulator,OS=latest,name=iPhone 17'
