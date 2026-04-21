@@ -63,7 +63,7 @@ public final class EncoreClient: NSObject {
                 try await Encore.shared.revokeEntitlements()
                 await MainActor.run { completion(nil) }
             } catch {
-                let nsError = error as NSError
+                let nsError = bridgedNSError(error)
                 await MainActor.run { completion(nsError) }
             }
         }
@@ -92,9 +92,9 @@ public final class EncoreClient: NSObject {
         _ = Encore.shared.onPurchaseRequest { request in
             try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
                 let wrapper = EncorePurchaseRequest(request)
-                handler(wrapper) { error in
-                    if let error = error {
-                        continuation.resume(throwing: error)
+                handler(wrapper) { nsError in
+                    if let nsError = nsError {
+                        continuation.resume(throwing: nsError as Error)
                     } else {
                         continuation.resume(returning: ())
                     }

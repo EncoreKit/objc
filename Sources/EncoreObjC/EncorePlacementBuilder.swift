@@ -19,7 +19,7 @@ public final class EncorePlacementBuilder: NSObject {
                 let wrapped = EncorePresentationResult(result)
                 await MainActor.run { completion(wrapped, nil) }
             } catch {
-                let nsError = error as NSError
+                let nsError = bridgedNSError(error)
                 await MainActor.run { completion(nil, nsError) }
             }
         }
