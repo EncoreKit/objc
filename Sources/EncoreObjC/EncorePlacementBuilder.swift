@@ -10,11 +10,19 @@ public final class EncorePlacementBuilder: NSObject {
         super.init()
     }
 
-    /// Presents the placement. Obj-C calls the auto-generated
-    /// `showWithCompletion:` surfaced via SE-0297.
-    @objc public func show() async throws -> EncorePresentationResult {
-        let result = try await builder.show()
-        return EncorePresentationResult(result)
+    /// Presents the placement. Completion fires on the main thread with
+    /// either a non-nil `result` or a non-nil `NSError`.
+    @objc public func show(completion: @escaping (EncorePresentationResult?, NSError?) -> Void) {
+        Task {
+            do {
+                let result = try await builder.show()
+                let wrapped = EncorePresentationResult(result)
+                await MainActor.run { completion(wrapped, nil) }
+            } catch {
+                let nsError = error as NSError
+                await MainActor.run { completion(nil, nsError) }
+            }
+        }
     }
 
     /// Fire-and-forget presentation. Obj-C: `[builder showAndForget];`

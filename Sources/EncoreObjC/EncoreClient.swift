@@ -45,15 +45,28 @@ public final class EncoreClient: NSObject {
 
     // MARK: - Entitlements
 
-    /// Obj-C: `-isActive:scope:completion:`
+    /// Obj-C: `-isActive:scope:completion:`. Completion fires on the main thread.
     @objc public func isActive(_ entitlement: EncoreEntitlement,
-                               scope: EncoreEntitlementScope) async -> Bool {
-        await Encore.shared.isActive(entitlement.swift, in: scope.swift)
+                               scope: EncoreEntitlementScope,
+                               completion: @escaping (Bool) -> Void) {
+        Task {
+            let result = await Encore.shared.isActive(entitlement.swift, in: scope.swift)
+            await MainActor.run { completion(result) }
+        }
     }
 
-    /// Obj-C: `-revokeEntitlementsWithCompletion:` (auto-generated via SE-0297).
-    @objc public func revokeEntitlements() async throws {
-        try await Encore.shared.revokeEntitlements()
+    /// Obj-C: `-revokeEntitlementsWithCompletion:`. Completion fires on the main
+    /// thread with a non-nil `NSError` on failure, or `nil` on success.
+    @objc public func revokeEntitlements(completion: @escaping (NSError?) -> Void) {
+        Task {
+            do {
+                try await Encore.shared.revokeEntitlements()
+                await MainActor.run { completion(nil) }
+            } catch {
+                let nsError = error as NSError
+                await MainActor.run { completion(nsError) }
+            }
+        }
     }
 
     // MARK: - Purchase Handler
