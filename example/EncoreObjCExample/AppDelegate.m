@@ -6,15 +6,18 @@
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    // Seeded local-dev key (encore-backend/packages/db/src/seeds/seed.ts).
+    // Paired with Xcode scheme env var `EncoreEnvironment = local` → backend
+    // must be running on localhost:4000. For production use a real pk_live_.
     EncoreOptions *options = [[EncoreOptions alloc] init];
     options.logLevel   = EncoreLogLevelDebug;
     options.unlockMode = EncoreUnlockModeOptimistic;
-    [[EncoreClient shared] configureWithApiKey:@"pk_test_demo_key" options:options];
+    [[EncoreClient shared] configureWithApiKey:@"pk_test_localdemoappkeytest00000" options:options];
 
     EncoreUserAttributes *attrs = [[EncoreUserAttributes alloc] init];
     attrs.email = @"demo@encorekit.com";
     attrs.subscriptionTier = @"free";
-    [[EncoreClient shared] identifyWithUserId:@"user_demo_1" attributes:attrs];
+    [[EncoreClient shared] identifyWithUserId:@"demo_user_objc_001" attributes:attrs];
 
     [[EncoreClient shared] onPurchaseRequest:^(EncorePurchaseRequest *request,
                                                void (^done)(NSError *error)) {

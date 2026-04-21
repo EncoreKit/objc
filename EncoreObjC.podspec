@@ -13,10 +13,10 @@ Pod::Spec.new do |s|
     enums, async/await, Combine). Distributed as a source pod — depends on
     EncoreKit at an exact pinned version.
   DESC
-  s.homepage         = "https://github.com/EncoreKit/objc-sdk"
+  s.homepage         = "https://github.com/EncoreKit/objc"
   s.license          = { :type => "MIT", :file => "LICENSE" }
   s.author           = { "Encore" => "support@encorekit.com" }
-  s.source           = { :git => "https://github.com/EncoreKit/objc-sdk.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/EncoreKit/objc.git", :tag => s.version.to_s }
 
   s.platform         = :ios, "15.0"
   s.swift_version    = "5.9"

@@ -1,0 +1,12 @@
+//
+//  Production.xcconfig
+//  EncoreObjCExample
+//
+//  Points the SDK at api.encorekit.com. Note: the SDK hard-codes production
+//  for Release builds regardless of this value (security rail) — this config
+//  exists for parity with the Swift demo and to make the intent explicit.
+//
+
+#include? "Pods/Target Support Files/Pods-EncoreObjCExample/Pods-EncoreObjCExample.release.xcconfig"
+
+ENCORE_ENVIRONMENT = production

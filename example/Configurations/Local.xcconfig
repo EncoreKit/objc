@@ -1,0 +1,13 @@
+//
+//  Local.xcconfig
+//  EncoreObjCExample
+//
+//  Points the SDK at localhost:4000. Requires encore-backend to be running.
+//  The `#include?` pulls in CocoaPods-generated flags; the trailing
+//  ENCORE_ENVIRONMENT is user-defined and propagates into Info.plist via
+//  the $(ENCORE_ENVIRONMENT) substitution on the EncoreEnvironment key.
+//
+
+#include? "Pods/Target Support Files/Pods-EncoreObjCExample/Pods-EncoreObjCExample.debug.xcconfig"
+
+ENCORE_ENVIRONMENT = local

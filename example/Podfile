@@ -15,4 +15,30 @@ post_install do |installer|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
     end
   end
+
+  # Keep our xcconfigs as the base reference for the app target so
+  # ENCORE_ENVIRONMENT survives across `pod install`. CocoaPods would
+  # otherwise re-point baseConfigurationReference at its generated
+  # Pods-EncoreObjCExample.{debug,release}.xcconfig; our xcconfigs
+  # #include? those files, so all pod linker flags are still picked up.
+  installer.aggregate_targets.each do |agg|
+    app_project = agg.user_project
+    app_project.root_object.targets.each do |target|
+      next unless target.name == 'EncoreObjCExample'
+
+      configurations_group = app_project.main_group.find_subpath('Configurations', true)
+      configurations_group.set_source_tree('<group>')
+
+      target.build_configurations.each do |config|
+        xcconfig_name = config.name == 'Release' ? 'Production' : 'Local'
+        relative_path = "Configurations/#{xcconfig_name}.xcconfig"
+
+        file_ref = app_project.files.find { |f| f.path == relative_path } ||
+                   configurations_group.new_file(relative_path)
+
+        config.base_configuration_reference = file_ref
+      end
+    end
+    app_project.save
+  end
 end
