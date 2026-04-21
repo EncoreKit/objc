@@ -11,9 +11,22 @@
 		E1000007 /* EncoreObjCExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EncoreObjCExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E100001B /* Exceptions for "EncoreObjCExample" folder in "EncoreObjCExample" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E1000004 /* EncoreObjCExample */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E1000008 /* EncoreObjCExample */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E100001B /* Exceptions for "EncoreObjCExample" folder in "EncoreObjCExample" target */,
+			);
 			path = EncoreObjCExample;
 			sourceTree = "<group>";
 		};
