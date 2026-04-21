@@ -6,7 +6,28 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2B7D1655D49103157048FBFB /* Pods_EncoreObjCExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB4DC0DB9BD6A48874D3147 /* Pods_EncoreObjCExampleTests.framework */; };
+		5113900FD10B7F4649117851 /* Pods_EncoreObjCExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59EE2C55A1540CF7F2AB6F65 /* Pods_EncoreObjCExample.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E1000019 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E1000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1000004;
+			remoteInfo = EncoreObjCExample;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0F1147AD88E3BEDF75D7B895 /* Pods-EncoreObjCExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EncoreObjCExample.debug.xcconfig"; path = "Target Support Files/Pods-EncoreObjCExample/Pods-EncoreObjCExample.debug.xcconfig"; sourceTree = "<group>"; };
+		11D698EAD9118F95716D1672 /* Pods-EncoreObjCExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EncoreObjCExampleTests.release.xcconfig"; path = "Target Support Files/Pods-EncoreObjCExampleTests/Pods-EncoreObjCExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		1DB4DC0DB9BD6A48874D3147 /* Pods_EncoreObjCExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EncoreObjCExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59EE2C55A1540CF7F2AB6F65 /* Pods_EncoreObjCExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EncoreObjCExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C138BF0FD8C6461AC1B1C0C /* Pods-EncoreObjCExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EncoreObjCExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-EncoreObjCExampleTests/Pods-EncoreObjCExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		64B34BAC30CCF37AD154932A /* Pods-EncoreObjCExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EncoreObjCExample.release.xcconfig"; path = "Target Support Files/Pods-EncoreObjCExample/Pods-EncoreObjCExample.release.xcconfig"; sourceTree = "<group>"; };
 		E1000006 /* EncoreObjCExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EncoreObjCExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1000007 /* EncoreObjCExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EncoreObjCExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -32,6 +53,8 @@
 		};
 		E1000009 /* EncoreObjCExampleTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = EncoreObjCExampleTests;
 			sourceTree = "<group>";
 		};
@@ -42,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5113900FD10B7F4649117851 /* Pods_EncoreObjCExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,18 +73,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7D1655D49103157048FBFB /* Pods_EncoreObjCExampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C89BC1A6E446CF8333B2ABD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0F1147AD88E3BEDF75D7B895 /* Pods-EncoreObjCExample.debug.xcconfig */,
+				64B34BAC30CCF37AD154932A /* Pods-EncoreObjCExample.release.xcconfig */,
+				5C138BF0FD8C6461AC1B1C0C /* Pods-EncoreObjCExampleTests.debug.xcconfig */,
+				11D698EAD9118F95716D1672 /* Pods-EncoreObjCExampleTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C3829DF1DCAE8F631E96BF8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				59EE2C55A1540CF7F2AB6F65 /* Pods_EncoreObjCExample.framework */,
+				1DB4DC0DB9BD6A48874D3147 /* Pods_EncoreObjCExampleTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E1000002 = {
 			isa = PBXGroup;
 			children = (
 				E1000008 /* EncoreObjCExample */,
 				E1000009 /* EncoreObjCExampleTests */,
 				E1000003 /* Products */,
+				1C89BC1A6E446CF8333B2ABD /* Pods */,
+				C3829DF1DCAE8F631E96BF8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,9 +128,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1000011 /* Build configuration list for PBXNativeTarget "EncoreObjCExample" */;
 			buildPhases = (
+				D46F8F4DA7BD8F8077CA8F37 /* [CP] Check Pods Manifest.lock */,
 				E100000A /* Sources */,
 				E100000B /* Frameworks */,
 				E100000C /* Resources */,
+				6B7BAC5FCE75CB4E9A1C9CF5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -100,6 +150,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E1000012 /* Build configuration list for PBXNativeTarget "EncoreObjCExampleTests" */;
 			buildPhases = (
+				4BF2F9A31F42F53B1811C15B /* [CP] Check Pods Manifest.lock */,
 				E100000D /* Sources */,
 				E100000E /* Frameworks */,
 				E100000F /* Resources */,
@@ -170,6 +221,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4BF2F9A31F42F53B1811C15B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EncoreObjCExampleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6B7BAC5FCE75CB4E9A1C9CF5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EncoreObjCExample/Pods-EncoreObjCExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EncoreObjCExample/Pods-EncoreObjCExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EncoreObjCExample/Pods-EncoreObjCExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D46F8F4DA7BD8F8077CA8F37 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EncoreObjCExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E100000A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -186,16 +301,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXContainerItemProxy section */
-		E1000019 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E1000001 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E1000004;
-			remoteInfo = EncoreObjCExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXTargetDependency section */
 		E100001A /* PBXTargetDependency */ = {
@@ -242,7 +347,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -304,7 +409,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -325,6 +430,7 @@
 		};
 		E1000015 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F1147AD88E3BEDF75D7B895 /* Pods-EncoreObjCExample.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -348,6 +454,7 @@
 		};
 		E1000016 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64B34BAC30CCF37AD154932A /* Pods-EncoreObjCExample.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -371,6 +478,7 @@
 		};
 		E1000017 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C138BF0FD8C6461AC1B1C0C /* Pods-EncoreObjCExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -387,6 +495,7 @@
 		};
 		E1000018 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11D698EAD9118F95716D1672 /* Pods-EncoreObjCExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
