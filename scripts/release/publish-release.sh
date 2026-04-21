@@ -141,10 +141,33 @@ echo ""
 # Step 8: Commit, tag, push
 # ------------------------------------------------------------------------
 echo -e "${BLUE}Step 8: Commit + tag + push${NC}"
+
+# Stage any podspec change. On the very first release — or any re-run
+# after a previous attempt bailed mid-flow — the version on disk may
+# already match $NEW, so `git commit` would fail with "nothing to
+# commit". Skip the commit in that case but still tag + push.
 git add EncoreObjC.podspec
-git commit -m "Release $NEW_TAG"
+if git diff --cached --quiet; then
+    echo -e "${YELLOW}   Podspec already at $NEW — no commit needed${NC}"
+else
+    git commit -m "Release $NEW_TAG"
+fi
+
+# Abort if the tag already exists (user needs to clean up manually —
+# re-tagging would be destructive).
+if git rev-parse -q --verify "refs/tags/$NEW_TAG" >/dev/null; then
+    echo -e "${RED}Tag $NEW_TAG already exists locally.${NC}"
+    echo "   Delete with: git tag -d $NEW_TAG && git push origin :refs/tags/$NEW_TAG"
+    exit 1
+fi
 git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
-git push origin main
+
+# Push main only if there's something to push (skip if HEAD is already on remote).
+if [[ "$(git rev-parse HEAD)" != "$(git rev-parse @{u})" ]]; then
+    git push origin main
+else
+    echo "   main already up to date on origin"
+fi
 git push origin "$NEW_TAG"
 echo -e "${GREEN}Pushed${NC}"
 echo ""
