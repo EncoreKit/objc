@@ -12,11 +12,15 @@
     EncoreOptions *options = [[EncoreOptions alloc] init];
     options.logLevel   = EncoreLogLevelDebug;
     options.unlockMode = EncoreUnlockModeOptimistic;
-    [[EncoreClient shared] configureWithApiKey:@"pk_test_localdemoappkeytest00000" options:options];
+    [[EncoreClient shared] configureWithApiKey:@"pk_test_13l47ocax6k9uev981kq0tle" options:options];
 
     EncoreUserAttributes *attrs = [[EncoreUserAttributes alloc] init];
     attrs.email = @"demo@encorekit.com";
     attrs.subscriptionTier = @"free";
+    // Forces the post-grant purchase path to fire — SDK falls back to
+    // userAttributes.iapProductId when the placement's remote config has no
+    // iapProductId of its own. Purely for exercising onPurchaseRequest end-to-end.
+    attrs.iapProductId = @"com.encorekit.monthly_premium";
     [[EncoreClient shared] identifyWithUserId:@"demo_user_objc_001" attributes:attrs];
 
     [[EncoreClient shared] onPurchaseRequest:^(EncorePurchaseRequest *request,

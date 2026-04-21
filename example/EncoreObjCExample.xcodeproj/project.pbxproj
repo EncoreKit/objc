@@ -55,8 +55,6 @@
 		};
 		E1000009 /* EncoreObjCExampleTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = EncoreObjCExampleTests;
 			sourceTree = "<group>";
 		};
@@ -90,7 +88,6 @@
 				5C138BF0FD8C6461AC1B1C0C /* Pods-EncoreObjCExampleTests.debug.xcconfig */,
 				11D698EAD9118F95716D1672 /* Pods-EncoreObjCExampleTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -206,6 +203,7 @@
 				Base,
 			);
 			mainGroup = E1000002;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = E1000003 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -446,6 +444,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 223SGMH832;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = EncoreObjCExample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -470,6 +469,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 223SGMH832;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = EncoreObjCExample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -22,6 +22,13 @@ public final class EncoreUserAttributes: NSObject {
     @objc public var lastPaymentAmount: String?
     @objc public var lastActiveDate: String?
     @objc public var totalSessions: String?
+
+    /// Deprecated in the Swift SDK — prefer remote-config-driven iapProductId.
+    /// Still read as a fallback by `OfferSheetViewModel.grantEntitlement()`, so
+    /// it's useful for exercising the `onPurchaseRequest` flow during local
+    /// demos when the placement's remote config doesn't supply one.
+    @objc public var iapProductId: String?
+
     @objc public var custom: [String: String]
 
     @objc public override init() {
@@ -50,6 +57,7 @@ public final class EncoreUserAttributes: NSObject {
             lastPaymentAmount: lastPaymentAmount,
             lastActiveDate: lastActiveDate,
             totalSessions: totalSessions,
+            iapProductId: iapProductId,
             custom: custom
         )
     }
