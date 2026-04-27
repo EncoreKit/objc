@@ -16,7 +16,7 @@ let package = Package(
         .library(name: "EncoreObjC", targets: ["EncoreObjC"])
     ],
     dependencies: [
-        .package(url: "https://github.com/EncoreKit/ios-sdk-binary", exact: "1.4.42")
+        .package(url: "https://github.com/EncoreKit/ios-sdk-binary", exact: "1.4.2020260305182332")
     ],
     targets: [
         .target(
